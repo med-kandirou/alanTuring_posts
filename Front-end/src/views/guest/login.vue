@@ -74,12 +74,11 @@ export default {
             data.append('pass', this.pass);
             axios.post("http://localhost/alanTuring_posts/Users/login", data)
                 .then((res) => {
-                    console.log(res);
                     if (res.data != 'exist') {
                         this.isvalid = true;
                     }
                     else{
-                        
+                        this.$router.push('/posts')
                     }
                 }
                 )

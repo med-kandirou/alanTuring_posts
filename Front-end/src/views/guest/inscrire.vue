@@ -107,9 +107,12 @@ export default {
                 data.append('email', this.email);
                 data.append('pass', this.pass);
                 axios.post("http://localhost/alanTuring_posts/Users/register", data)
-                    .then(
-                        this.logged=true
+                    .then(()=>{
+                        this.logged=true;
+                        this.$router.push('/login')
+                        }   
                     )
+                
             }
         }
     }
