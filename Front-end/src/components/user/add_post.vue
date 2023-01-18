@@ -80,7 +80,7 @@ import axios from 'axios'
                 if (!files.length) return
                 // const reader = new FileReader()
                 // reader.readAsDataURL(files[0])
-                console.log(files[0].name)
+                this.image=files[0].name
             }
         }
     }
