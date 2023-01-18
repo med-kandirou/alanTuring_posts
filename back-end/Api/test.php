@@ -7,5 +7,4 @@ class test extends Controller{
         echo 'hhhhh';
     }
 
-    
 } 
