@@ -7,7 +7,8 @@ class Post extends database{
         $stmt=$this->openConnection()->prepare($sql);
         $stmt->bindParam(':image', $image);
         $stmt->bindParam(':status', $status);
-        $stmt->bindParam(':likes', 0);
+        $likes=0;
+        $stmt->bindParam(':likes', $likes);
         if($stmt->execute()){
             return true;
         }

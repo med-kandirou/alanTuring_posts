@@ -1,5 +1,4 @@
 <template>
-
     <div data-dial-init class="fixed right-6 bottom-6 group">
         <button type="button" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" aria-expanded="false"
             class="flex items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
@@ -10,7 +9,6 @@
             <span class="sr-only">Open actions menu</span>
         </button>
     </div>
-
     <!-- Main modal -->
     <div id="authentication-modal" tabindex="-1" aria-hidden="true"
         class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
@@ -33,7 +31,7 @@
                     <form class="space-y-6" action="#">
                         <div>
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">votre status</label>
-                            <textarea class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"></textarea>
+                            <textarea v-model="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"></textarea>
                         </div>
                         <div class="flex items-center justify-center w-full">
                             <label for="dropzone-file"
@@ -47,10 +45,10 @@
                                     </svg>
                                     <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                                 </div>
-                                <input id="dropzone-file" type="file" class="hidden" />
+                                <input id="dropzone-file" @change="onFile" type="file" class="hidden" />
                             </label>
                         </div>
-                        <button type="button" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login to your account</button>
+                        <button type="button" @click="add_post" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ajouter</button>
                     </form>
                 </div>
             </div>
@@ -60,8 +58,30 @@
 </template>
 
 <script>
-
+import axios from 'axios'
     export default{
         name:'add_post',
+        data(){
+            return {
+                status:'',
+                image:''
+            }
+        },
+        methods:{
+            add_post:function(){
+                var data = new FormData();
+                data.append('status', this.status);
+                data.append('image', this.image);
+                axios.post("http://localhost/alanTuring_posts/Posts/add_post", data)
+                    .then((res)=>console.log(res) )
+            },
+            onFile(e) {
+                const files = e.target.files
+                if (!files.length) return
+                // const reader = new FileReader()
+                // reader.readAsDataURL(files[0])
+                console.log(files[0].name)
+            }
+        }
     }
 </script>

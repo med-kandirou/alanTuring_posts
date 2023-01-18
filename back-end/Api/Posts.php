@@ -11,8 +11,8 @@ class Posts extends Controller{
     }
 
     function add_post(){
-        $image=$_POST['nom'];
-        $status=$_POST['email'];
+        $image=$_POST['image'];
+        $status=$_POST['status'];
         if($this->post->add_post($status,$image)){
             echo json_encode('ajouter');
         }
