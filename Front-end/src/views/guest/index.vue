@@ -12,7 +12,7 @@ export default{
     name:'index',
     components:{
         Header,
-        Langing,
+        Landing,
         About
     }
 }
