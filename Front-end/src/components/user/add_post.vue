@@ -78,8 +78,6 @@ import axios from 'axios'
             onFile(e) {
                 const files = e.target.files
                 if (!files.length) return
-                // const reader = new FileReader()
-                // reader.readAsDataURL(files[0])
                 this.image=files[0].name
             }
         }
