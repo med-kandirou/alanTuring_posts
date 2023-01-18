@@ -79,7 +79,8 @@ import axios from 'axios'
                 const files = e.target.files
                 if (!files.length) return
                 this.image=files[0].name
-            }
+            },
+            
         }
     }
 </script>

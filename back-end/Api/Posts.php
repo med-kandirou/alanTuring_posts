@@ -9,6 +9,12 @@ class Posts extends Controller{
     {
         $this->post=$this->model('Post');
     }
+    
+
+    function getPosts(){
+        $data=$this->post->getPosts();
+        echo json_encode($data);
+    }
 
     function add_post(){
         $image=$_POST['image'];

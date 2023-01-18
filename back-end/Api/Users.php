@@ -31,4 +31,7 @@ class Users extends Controller{
         }
     }
 
+    function getsession(){
+        echo json_encode($_SESSION['id']);
+    }
 } 

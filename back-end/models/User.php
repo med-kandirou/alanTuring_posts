@@ -19,7 +19,11 @@ class User extends database{
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':pass', $pass);
         $stmt->execute();
-        if($stmt->rowCount()>0){
+        if($stmt->rowCount()==1){
+            $res=$stmt->fetch(PDO::FETCH_ASSOC);
+            $_SESSION['id']=$res['id_u'];
+            $_SESSION['nom']=$res['nom'];
+            $_SESSION['email']=$res['email'];
             return true;
         }
         else{
