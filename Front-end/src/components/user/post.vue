@@ -7,16 +7,29 @@
                         <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                             <img class="mr-4 w-16 h-16 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="Jese Leos">
                             <div>
-                                <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{{  }}</a>
+                                <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{{ name }}</a><br>
+                                <a href="#" rel="author" class="text-xl font-bold text-gray-900 dark:text-white">{{ date }}</a>
                             </div>
                         </div>
                     </address>
                 </header>
-                <p class="lead">{{  }}</p>
-                <figure><img src="https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-1.png" alt="">
-                    <figcaption>Digital art by Anonymous</figcaption>
+                <p class="lead">{{ content }}</p>
+                <figure><img src="https://flowbite.s3.amazonaws.com/typography-plugin/typography-image-1.png">
                 </figure>
             </article>
         </div>
     </main>
 </template>
+
+<script>
+export default{
+    name:'post',
+    props:{
+        name:String,
+        content:String,
+        data:String
+    }
+}
+
+
+</script>
