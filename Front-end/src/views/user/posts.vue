@@ -1,7 +1,7 @@
 <template>
     <Header />
     <div v-for="post in posts">
-        <Post :name="post.nom" :content="post.content" :data="post.date_ajout" :id_p="post.id_p" />
+        <Post :name="post.nom" :content="post.content" :date="post.date_ajout" :id_p="post.id_p" :likes="post.likes" />
     </div>
     <Add_post />
 </template>
@@ -35,7 +35,7 @@ export default{
             }
     },
     mounted(){
-        this.getsession(),
+        //this.getsession(),
         this.getPosts();
     }
 }
