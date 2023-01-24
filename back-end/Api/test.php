@@ -2,7 +2,8 @@
 
 class test extends Controller{
     public function index(){
-        echo $_SESSION['id'];
+        var_dump($_SESSION);
+
     }
 
 } 

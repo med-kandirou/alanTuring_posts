@@ -29,13 +29,13 @@ export default{
             axios.post("http://localhost/alanTuring_posts/Posts/getPosts")
                 .then((res)=>this.posts=res.data)
         },
-        getsession:function(){
-                axios.get("http://localhost/alanTuring_posts/Users/getsession")
-                    .then((res)=>console.log(res) )
-            }
+        getuser:function(){
+                axios.get("http://localhost/alanTuring_posts/Users/getuser")
+                    .then((res)=>console.log(res))
+        }
     },
     mounted(){
-        //this.getsession(),
+        this.getuser(),
         this.getPosts();
     }
 }
