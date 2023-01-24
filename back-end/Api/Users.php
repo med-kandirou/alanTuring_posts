@@ -14,13 +14,8 @@ class Users extends Controller{
     {
         $email=$_POST['email'];
         $pass=$_POST['pass'];
-        if($this->user->login($email,$pass)){
-            echo json_encode('exist');
-        }
-        else{
-            echo json_encode('exist pas');
-        }
-
+        $feedback=$this->user->login($email,$pass);
+        echo json_encode($feedback);
     }
 
     function register(){

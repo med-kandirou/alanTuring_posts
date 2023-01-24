@@ -13,6 +13,9 @@ class User extends database{
     }
 
     function login($email,$pass){
+        $feedback=[
+            'isTrue'=>false
+        ];
         $sql = "SELECT `id_u`, `nom`, `email`, `pass` FROM `user` where email=:email and pass=:pass";
         $stmt=$this->openConnection()->prepare($sql);
         $stmt->bindParam(':email', $email);
@@ -20,13 +23,16 @@ class User extends database{
         $stmt->execute();
         if($stmt->rowCount()==1){
             $res=$stmt->fetch();
-            $_SESSION['id']=$res['id_u'];
-            $_SESSION['nom']=$res['nom'];
-            $_SESSION['email']=$res['email'];
-            return true;
+            $feedback=[
+                'isTrue'=>true,
+                'id'=>$res['id_u'],
+                'nom'=>$res['nom'],
+                'email'=>$res['email'],
+            ];
+            return $feedback;
         }
         else{
-            return false;
+            return $feedback;
         }
     }
     
