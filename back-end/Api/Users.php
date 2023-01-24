@@ -26,8 +26,4 @@ class Users extends Controller{
             echo json_encode('ajouter');
         }
     }
-
-    function getuser(){
-        echo json_encode($_SESSION['zbi']);
-    }
 } 

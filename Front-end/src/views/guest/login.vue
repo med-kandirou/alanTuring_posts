@@ -78,9 +78,9 @@ export default {
                         this.isvalid = true;
                     }
                     else{
-                        document.cookie = "id="+res.data.id+"";
-                        document.cookie = "nom="+res.data.nom+"";
-                        document.cookie = "email="+res.data.email+"";
+                        Cookies.set('id',respon.data.id);
+                        Cookies.set('nom',respon.data.nom);
+                        Cookies.set('email',respon.data.email);
                         this.$router.push('/posts');
                     }
                 }
