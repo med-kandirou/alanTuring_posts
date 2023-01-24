@@ -4,6 +4,9 @@
         <Post :name="post.nom" :content="post.content" :date="post.date_ajout" :id_p="post.id_p" :likes="post.likes" />
     </div>
     <Add_post />
+
+
+    <button @click="">logout</button>
 </template>
 
 <script>
@@ -37,5 +40,6 @@ export default{
     mounted(){
         this.getPosts();
     }
+    
 }
 </script>

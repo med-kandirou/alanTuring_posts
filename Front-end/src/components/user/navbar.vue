@@ -19,7 +19,7 @@
         </div>
         <ul class="py-1" aria-labelledby="user-menu-button">
           <li>
-            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+            <a href="#" @click="logout" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
           </li>
         </ul>
       </div>
@@ -35,12 +35,18 @@
 </template>
 
 <script>
-
+import Cookies from "vue-cookies";
 export default{
     name:'navbar',
     props:{
         name:String,
         email:String,
     },
+    methods:{
+      logout(){
+        Cookies.remove('id');
+        this.$router.push('/');
+      },
+    }
 }
 </script>
