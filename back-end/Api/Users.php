@@ -20,6 +20,7 @@ class Users extends Controller{
         else{
             echo json_encode('exist pas');
         }
+
     }
 
     function register(){
@@ -31,7 +32,7 @@ class Users extends Controller{
         }
     }
 
-    function getsession(){
-        echo json_encode($_SESSION['id']);
+    function getuser(){
+        echo json_encode($_SESSION['zbi']);
     }
 } 

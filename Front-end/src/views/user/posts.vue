@@ -35,8 +35,8 @@ export default{
         }
     },
     mounted(){
-        this.getuser(),
         this.getPosts();
+        this.getuser();
     }
 }
 </script>

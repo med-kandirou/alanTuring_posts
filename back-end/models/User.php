@@ -1,5 +1,4 @@
 <?php
-
 class User extends database{
 
     function register($nom,$email,$pass){
@@ -20,7 +19,7 @@ class User extends database{
         $stmt->bindParam(':pass', $pass);
         $stmt->execute();
         if($stmt->rowCount()==1){
-            $res=$stmt->fetch(PDO::FETCH_ASSOC);
+            $res=$stmt->fetch();
             $_SESSION['id']=$res['id_u'];
             $_SESSION['nom']=$res['nom'];
             $_SESSION['email']=$res['email'];
