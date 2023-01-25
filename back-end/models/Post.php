@@ -39,4 +39,16 @@ class Post extends database{
         $data=$stmt->fetchAll(PDO::FETCH_ASSOC);
         return $data;
     }
+
+    function addcomment($id_p,$id_u,$comment){
+        $sql = "INSERT INTO `comment`(`id_p`, `id_u`, `comment`) VALUES (:id_p,:id_u,:comment)";
+        $stmt=$this->openConnection()->prepare($sql);
+        $stmt->bindParam(':id_p',$id_p);
+        $stmt->bindParam(':id_u',$id_u);
+        $stmt->bindParam(':comment', $comment);
+        if($stmt->execute()){
+            return true;
+        }
+    }
+
 }

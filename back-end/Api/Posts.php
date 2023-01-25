@@ -37,4 +37,13 @@ class Posts extends Controller{
         $data=$this->post->getcomment($id);
         echo json_encode($data);    
     }
+
+    function addcomment(){
+        $id_p=$_POST['id_p'];
+        $id_u=$_POST['id_u'];
+        $comment=$_POST['comment'];
+        if($this->post->addcomment($id_p,$id_u,$comment)){
+            echo json_encode('ajouter');
+        }
+    }
 } 
