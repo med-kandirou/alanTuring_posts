@@ -3,7 +3,7 @@
     <div v-for="post in posts">
         <Post :name="post.nom" :content="post.content" :date="post.date_ajout" :id_p="post.id_p" :likes="post.likes" />
     </div>
-    <Add_post />
+    <Add_post @add_post="getPosts" />
 
 </template>
 
@@ -24,6 +24,7 @@ export default{
             posts:null
         }
     },
+    emits:['add_post'],
     components:{
         Header,
         Post,

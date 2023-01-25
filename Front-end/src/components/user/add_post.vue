@@ -33,22 +33,15 @@
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">votre status</label>
                             <textarea v-model="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"></textarea>
                         </div>
-                        <div class="flex items-center justify-center w-full">
-                            <label for="dropzone-file"
-                                class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
-                                        </path>
-                                    </svg>
-                                    <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                                </div>
-                                <input id="dropzone-file" @change="onFile" type="file" class="hidden" />
-                            </label>
+                        <div class="w-full">              
+                            <div>
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Image</label>
+                            </div>
+                            <div>
+                                <input @change="onFile" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" type="file">
+                            </div>
                         </div>
-                        <button type="button" @click="add_post" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ajouter</button>
+                        <button type="button" data-modal-hide="authentication-modal" @click="add_post" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ajouter</button>
                     </form>
                 </div>
             </div>
@@ -75,14 +68,20 @@ import axios from 'axios'
                 data.append('status', this.status);
                 data.append('image', this.image);
                 axios.post("http://localhost/alanTuring_posts/Posts/add_post", data)
-                    .then((res)=>console.log(res) )
+                    .then((res)=>{
+                        if(res.data="ajouter"){
+                            this.status='';
+                            this.image=''
+                        }
+                    } )
+                this.$emit('add_post');
             },
             onFile(e) {
                 const files = e.target.files
                 if (!files.length) return
                 this.image=files[0].name
             },
-            
-        }
+        },
+        emits: ["add_post"],
     }
 </script>
