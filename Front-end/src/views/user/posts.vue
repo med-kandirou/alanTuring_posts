@@ -1,7 +1,7 @@
 <template>
     <Header :name="nom" :email="email" />
     <div v-for="post in posts">
-        <Post @addcomment="addcomment"  @addlike="addlike" :name="post.nom" :content="post.content" :date="post.date_ajout" :id_p="post.id_p" :likes="post.likes" />
+        <Post @getcomment="getcomment"  @addlike="addlike" :name="post.nom" :content="post.content" :date="post.date_ajout" :id_p="post.id_p" :likes="post.likes" />
     </div>
     <Add_post @add_post="getPosts" />
 
@@ -10,12 +10,9 @@
 
 
 
-<!-- Modal toggle -->
-<button data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
-  Toggle modal
-</button>
+<!-- Commentaires -->
 
-<!-- Main modal -->
+
 <div id="defaultModal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
     <div class="relative w-full h-full max-w-2xl md:h-auto">
         <!-- Modal content -->
@@ -31,10 +28,12 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="p-6 space-y-6">
-                <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                    With less than a month to go before the European Union enacts new consumer privacy laws for its citizens, companies around the world are updating their terms of service agreements to comply.
-                </p>
+            <div v-for="comment in comments">
+                <div class="p-6 space-y-6">
+                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+                        {{ comment.comment }}
+                    </p>
+                </div>
             </div>
             <!-- Modal footer -->
             <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
@@ -43,17 +42,6 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 </template>
@@ -72,7 +60,8 @@ export default{
         return {
             nom:Cookies.get("nom"),
             email:Cookies.get("email"),
-            posts:null
+            posts:null,
+            comments:null
         }
     },
     emits:['add_post'],
@@ -96,16 +85,11 @@ export default{
                     }
                 }
             )
-        },addcomment:function(id){
+        },getcomment:function(id){
             var form = new FormData();
             form.append('id',id)
-            axios.post("http://localhost/alanTuring_posts/Posts/addcomment/",form)
-                .then((res)=>{
-                    if(res.data=="ajouter"){
-                        this.getPosts();
-                    }
-                }
-            )
+            axios.post("http://localhost/alanTuring_posts/Posts/getcomment/",form)
+                .then((res)=>this.comments=res.data)
         }
     },
     mounted(){

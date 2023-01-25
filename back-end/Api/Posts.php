@@ -32,4 +32,9 @@ class Posts extends Controller{
         }
     }
 
+    function getcomment(){
+        $id=$_POST['id'];
+        $data=$this->post->getcomment($id);
+        echo json_encode($data);    
+    }
 } 

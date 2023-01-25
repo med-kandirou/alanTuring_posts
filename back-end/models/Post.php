@@ -30,4 +30,13 @@ class Post extends database{
             return true;
         }
     }
+
+    function getcomment($id_p){
+        $sql = "SELECT `id_c`,u.nom, c.comment FROM `comment` c inner join user u on c.id_u=u.id_u where c.id_p=:id_p";
+        $stmt=$this->openConnection()->prepare($sql);
+        $stmt->bindParam(':id_p', $id_p);
+        $stmt->execute();
+        $data=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $data;
+    }
 }
