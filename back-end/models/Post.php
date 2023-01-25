@@ -21,4 +21,13 @@ class Post extends database{
             return true;
         }
     }
+
+    function addlike($id){
+        $sql = "UPDATE `post` SET `likes`=likes+1 WHERE id_p=:id_p";
+        $stmt=$this->openConnection()->prepare($sql);
+        $stmt->bindParam(':id_p', $id);
+        if($stmt->execute()){
+            return true;
+        }
+    }
 }

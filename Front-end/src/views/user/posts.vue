@@ -1,7 +1,7 @@
 <template>
     <Header :name="nom" :email="email" />
     <div v-for="post in posts">
-        <Post :name="post.nom" :content="post.content" :date="post.date_ajout" :id_p="post.id_p" :likes="post.likes" />
+        <Post @addlike="addlike" :name="post.nom" :content="post.content" :date="post.date_ajout" :id_p="post.id_p" :likes="post.likes" />
     </div>
     <Add_post @add_post="getPosts" />
 
@@ -35,6 +35,17 @@ export default{
             axios.post("http://localhost/alanTuring_posts/Posts/getPosts")
                 .then((res)=>this.posts=res.data)
         },
+        addlike:function(id){
+            var form = new FormData();
+            form.append('id',id)
+            axios.post("http://localhost/alanTuring_posts/Posts/addlike/",form)
+                .then((res)=>{
+                    if(res.data=="ajouter"){
+                        this.getPosts();
+                    }
+                }
+            )
+        }
     },
     mounted(){
         this.getPosts();

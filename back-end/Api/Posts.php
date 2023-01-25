@@ -25,4 +25,11 @@ class Posts extends Controller{
         }
     }
 
+    function addlike(){
+        $id=$_POST['id'];
+        if($this->post->addlike($id)){
+            echo json_encode('ajouter');
+        }
+    }
+
 } 
