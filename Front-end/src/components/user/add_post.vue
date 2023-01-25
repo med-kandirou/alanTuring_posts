@@ -58,6 +58,7 @@
 </template>
 
 <script>
+import Cookies from "vue-cookies";
 import axios from 'axios'
     export default{
         name:'add_post',
@@ -70,6 +71,7 @@ import axios from 'axios'
         methods:{
             add_post:function(){
                 var data = new FormData();
+                data.append('id',Cookies.get("id"));
                 data.append('status', this.status);
                 data.append('image', this.image);
                 axios.post("http://localhost/alanTuring_posts/Posts/add_post", data)

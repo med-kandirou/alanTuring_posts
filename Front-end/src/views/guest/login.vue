@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import Cookies from "vue-cookies";
 import axios from 'axios';
 import Header from '../../components/guest/header.vue'
 export default {
@@ -78,9 +79,9 @@ export default {
                         this.isvalid = true;
                     }
                     else{
-                        Cookies.set('id',respon.data.id);
-                        Cookies.set('nom',respon.data.nom);
-                        Cookies.set('email',respon.data.email);
+                        Cookies.set('id',res.data.id);
+                        Cookies.set('nom',res.data.nom);
+                        Cookies.set('email',res.data.email);
                         this.$router.push('/posts');
                     }
                 }

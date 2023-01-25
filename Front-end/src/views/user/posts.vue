@@ -5,8 +5,6 @@
     </div>
     <Add_post />
 
-
-    <button @click="">logout</button>
 </template>
 
 <script>
