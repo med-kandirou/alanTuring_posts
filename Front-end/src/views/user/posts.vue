@@ -1,7 +1,7 @@
 <template>
     <Header :name="nom" :email="email" />
     <div v-for="post in posts">
-        <Post @getcomment="getcomment"  @addlike="addlike" :name="post.nom" :content="post.content" :date="post.date_ajout" :id_p="post.id_p" :likes="post.likes" />
+        <Post @getcomment="getcomment"  @addlike="addlike" :name="post.nom" :content="post.content" :date="post.date_ajout" :image="post.image" :id_p="post.id_p" :likes="post.likes" />
     </div>
     <Add_post @add_post="getPosts" />
 
