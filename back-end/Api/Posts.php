@@ -18,9 +18,10 @@ class Posts extends Controller{
 
     function add_post(){
         $id=$_POST['id'];
-        $image=$_POST['image'];
+        $image=$_FILES['image'];
         $status=$_POST['status'];
-        if($this->post->add_post($id,$status,$image)){
+        if($this->post->add_post($id,$status,$image['name'])){
+            move_uploaded_file($_FILES['image']['tmp_name'], '../../front-end/src/assets/images/'.$_FILES['image']['name']);
             echo json_encode('ajouter');
         }
     }
