@@ -1,8 +1,8 @@
 <?php
 
 Class core {
-    protected $currentApi="test";
-    protected $currentMethode="index";
+    protected $currentApi="";
+    protected $currentMethode="";
     protected $params=[];
 
     function __construct()
