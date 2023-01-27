@@ -69,13 +69,12 @@ import axios from 'axios'
                 data.append('image', this.image);
                 axios.post("http://localhost/alanTuring_posts/Posts/add_post", data)
                     .then((res)=>{
-                        // if(res.data="ajouter"){
-                        //     this.status='';
-                        //     this.image=''
-                        // }
-                        console.log(res);
+                        if(res.data="ajouter"){
+                            this.status='';
+                            this.image='';
+                            this.$emit('add_post');
+                        }
                     } )
-                this.$emit('add_post');
             },
             onFile(e) {
                 const files = e.target.files
